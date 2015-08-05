@@ -11,17 +11,17 @@ public class Calculate {
         int sum = 0;
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int v1 = Integer.parseInt(reader.readLine());
-        String operation = reader.readLine();
+        String operation1 = reader.readLine();
         int v2 = Integer.parseInt(reader.readLine());
-        if (operation.equals("+")) {
+        if (operation1.equals("+")) {
             System.out.println(summ(v1, v2));
-        } else if (operation.equals("-")){
+        } else if (operation1.equals("-")){
             System.out.println(subst(v1,v2));
-        } else if (operation.equals("*")){
+        } else if (operation1.equals("*")){
             System.out.println(mul(v1, v2));
-        } else if (operation.equals("/")){
+        } else if (operation1.equals("/")){
             System.out.println(div(v1,v2));
-        } else if (operation.equals("^")) {
+        } else if (operation1.equals("^")) {
             System.out.println(deg(v1,v2));
         }
     }
