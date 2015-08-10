@@ -25,7 +25,7 @@ public class ClinicRunner {
     public static void main(String[] args) {
         String name;
         String namep;
-        String s = "yes";
+        String s;
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -47,99 +47,83 @@ public class ClinicRunner {
                         System.out.println("Enter more? yes/no");
                         s = scanner.next();
                     }
-                    while (s.equals("yes"));{ break;}
+                    while (s.equals("yes"));
+                    break;
 
                 case 2:
                     do {
-                        System.out.println("Enter the name of the client");
-                        name = scanner.next();
-                        for (int i = 0; i < Clinic.clientsList.size(); i++) {
-                            if (name.equals(Clinic.clientsList.get(i).getName())) {
-                                System.out.println(Clinic.clientsList.get(i).pet.getNamep());
-                                break;
-                            }
-                        }
+                        do {
+                            System.out.println("Enter the name of the client");
+                            name = scanner.next();
+                            System.out.println(Clinic.Check(name));
+                           }
+                        while (Clinic.Check(name).equals("Name not found"));
+                        System.out.println(Clinic.searchByName(name).pet.getNamep());
                         System.out.println("Enter more? yes/no");
                         s = scanner.next();
                     }
                     while (s.equals("yes"));
-                {break;}
+                    break;
 
                 case 3:
                     do {
-                        System.out.println("Enter name client or enter name pet for find");
-                        name = scanner.next();
-                        for (int i = 0; i < Clinic.clientsList.size(); i++) {
-                            if (name.equals(Clinic.clientsList.get(i).getName()) || name.equals(Clinic.clientsList.get(i).pet.getNamep())){
-                                System.out.println(Clinic.clientsList.get(i).getName()+ " " + Clinic.clientsList.get(i).pet.getNamep());
-                                break;
-                            }
+                        do {
+                            System.out.println("Enter name client or enter name pet for find");
+                            name = scanner.next();
+                            System.out.println(Clinic.Check(name));
                         }
+                        while (Clinic.Check(name).equals("Name not found"));
+                        System.out.println(Clinic.searchByName(name).pet.getNamep());
                         System.out.println("Enter more? yes/no");
                         s = scanner.next();
-                    } while (s.equals("yes")); {break;}
+                    } while (s.equals("yes"));
+                    break;
 
                 case 4:
                     do {
-
-                        int k=0;
                         do {
                             System.out.println("Enter name client");
                             name = scanner.next();
-                            for (int i = 0; i < Clinic.clientsList.size(); i ++){
-                                if (name.equals(Clinic.clientsList.get(i).getName())){
-                                    k++;
-                                }
+                            System.out.println(Clinic.Check(name));
                         }
-                            if (k==0){
-                                System.out.println("Not found name");
-                            }
-                        }
-                        while (k==0);
+                        while (Clinic.Check(name).equals("Name not found"));
 
-                        System.out.println("Edit his name? yes/no" );
+                        System.out.println("Edit his  name? yes/no");
                         s = scanner.next();
                         if (s.equals("yes")) {
-                            for (int i = 0; i < Clinic.clientsList.size(); i++) {
-                                if (name.equals(Clinic.clientsList.get(i).getName())) {
-                                    System.out.println("Enter now name");
-                                    name = scanner.next();
-                                    Clinic.clientsList.get(i).setName(name);
-                                    break;
-                                }
-                            }
+                            Client client = Clinic.searchByName(name);
+                            System.out.println("Enter now  name");
+                            name = scanner.next();
+                            client.setName(name);
                         }
 
                         System.out.println("Edit the name of your pet? yes/no");
                         s = scanner.next();
                         if (s.equals("yes")) {
+                            Client client = Clinic.searchByName(name);
                             System.out.println("Enter now name pet");
-                            namep = scanner.next();
-                            for (int i = 0; i < Clinic.clientsList.size(); i++) {
-                                if (name.equals(Clinic.clientsList.get(i).getName())) {
-                                    Clinic.clientsList.get(i).pet.setNamep(namep);
-                                    break;
-                                    }
-                                    else {
-                                        System.out.println("Name not found");
-                                    }
-                                }
-                            }
+                            name = scanner.next();
+                            client.pet.setNamep(name);
+                        }
                         System.out.println("Edit more?");
                         s = scanner.next();
-                    } while (s.equals("yes")); break;
+                    } while (s.equals("yes"));
+                    break;
+
                 case 5:
                     do {
                         System.out.println("Enter name client or name pet to DELETE");
                         name = scanner.next();
-                        for (int i = 0; i<Clinic.clientsList.size(); i++){
-                            if (name.equals(Clinic.clientsList.get(i).getName()) || name.equals(Clinic.clientsList.get(i).pet.getNamep())){
+                        for (int i = 0; i< Clinic.clientsList.size(); i++){
+                            if (name.equals(Clinic.clientsList.get(i).getName())){
                                 Clinic.clientsList.remove(i);
+                                break;
                             }
                         }
                         System.out.println("Want more delete? yes/no");
                         s = scanner.next();
-                    } while (s.equals("yes")); break;
+                    } while (s.equals("yes"));
+                    break;
 
                 case 6:
                     System.exit(0);

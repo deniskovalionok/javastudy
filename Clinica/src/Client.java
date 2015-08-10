@@ -8,7 +8,6 @@ public class Client {
     String name;
     Pet pet;
 
-
     public void setName(String name) {
         this.name = name;
     }
